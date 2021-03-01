@@ -11,12 +11,12 @@ public class pressionestorica {
 
 	            StringBuilder buffer = new StringBuilder();
 
-	            String nomecitta = "London,UK";
+	           // String nomecitta = "London,UK";
 		        //String units = "UK";
 	            String Apikey = "aa0854721ceebf98625f7753971cd283";
-	            String hours="hour";
+	           // String hours="hour";
 
-	            String url_String = "http://history.openweathermap.org/data/2.5/history/city?q=" + nomecitta +"&type="+hours+"&start="+"&end="+"&appid=" + Apikey ;
+	            String url_String = "http://history.openweathermap.org/data/2.5/history/city?q=London,UK"+"&appid=" + Apikey; //+ nomecitta +"&appid=" + Apikey ;
 
 	            URL myURL = new URL(url_String); //Crea URL 
 

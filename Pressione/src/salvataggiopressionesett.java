@@ -16,10 +16,10 @@ public class salvataggiopressionesett {
 	        //StringBuilder buffer = new StringBuilder();
 
 	        String nomecitta = "Los Angeles";
-	        String units = "metric";
+	        //String units = "metric";
 	        String Apikey = "aa0854721ceebf98625f7753971cd283";
 
-	        String url_String = "https://api.openweathermap.org/data/2.5/weather?q=" + nomecitta + "&appid=" + Apikey + "&units=" + units;
+	        String url_String = "https://api.openweathermap.org/data/2.5/forecast?q=" + nomecitta + "&appid=" + Apikey; //+ "&units=" + units;
 
 	        URL myURL = new URL(url_String); //Crea URL 
 
@@ -36,23 +36,24 @@ public class salvataggiopressionesett {
 
 	        //GENERO UN JSONObject per trovare il campo main
 	        JSONObject obj = new JSONObject(line);
-	        Object main_press = obj.get("main");
+	        Object main_press = obj.get("list");
 	        System.out.println(main_press);
-
+	        
 	        //Cast del campo main a String
 	        String value = main_press.toString();
-
+           do {
+            
 	        /*Indice del carattere iniziale:
 	                   |
 	                   v 
 	        "pressure":0000*/
-	        int index = (value.indexOf("pressure") -1);
+	        int index = (value.indexOf("pressure") +10);
 
 	        /*Indice del carattere finale:
 	                      |
 	                      v 
 	        "pressure":0000*/
-	        int index_end = (value.indexOf("feels") -2);
+	        int index_end = (value.indexOf("sea_level") -2);
 
 	        String pressure = new String();
 	        //Leggo da indice iniziale ad indice finale
@@ -60,10 +61,11 @@ public class salvataggiopressionesett {
 	        System.out.println(pressure);
 
 	        //Adesso scrivo sul file
-	        FileWriter fd = new FileWriter("pressure.txt");
+	        FileWriter fd = new FileWriter("pressuresett.txt");
 	        fd.write("Pressione: " + pressure);
 	        //chiudo file
-	        fd.close();
+	        fd.close();}while(value.contains("}}]"));
+	        
 	        
 
 	        

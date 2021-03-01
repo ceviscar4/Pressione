@@ -1,16 +1,14 @@
 import java.io.BufferedReader;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class salvataggiopressione {
+public class salvataggiopressionestorica {
 
 	public static void main(String[] args) {
 		try {
@@ -18,10 +16,10 @@ public class salvataggiopressione {
 	        //StringBuilder buffer = new StringBuilder();
 
 	        String nomecitta = "Los Angeles";
-	        String units = "metric";
+	        //String units = "metric";
 	        String Apikey = "aa0854721ceebf98625f7753971cd283";
 
-	        String url_String = "https://api.openweathermap.org/data/2.5/weather?q=" + nomecitta + "&appid=" + Apikey + "&units=" + units;
+	        String url_String = "https://history.openweathermap.org/data/2.5/history/city?q=" + nomecitta + "&appid=" + Apikey; //+ "&units=" + units;
 
 	        URL myURL = new URL(url_String); //Crea URL 
 
@@ -70,7 +68,9 @@ public class salvataggiopressione {
 	        //fd.write("Pressione: " + pressure);
 	        //chiudo file
 	        fd.close();
-	   
+	        
+
+	        
 	    }
 
 	    catch(IOException e) {
