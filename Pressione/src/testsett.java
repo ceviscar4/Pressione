@@ -4,13 +4,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class salvataggiopressionesett {
+public class testsett {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		try {
 
 	        //StringBuilder buffer = new StringBuilder();
@@ -39,21 +44,53 @@ public class salvataggiopressionesett {
 	        Object main_press = obj.get("list");
 	        System.out.println(main_press);
 	       
+	        
 	        //Cast del campo main a String
 	        String value = main_press.toString();
-          // do {
-            
+         
+	                    
 	        /*Indice del carattere iniziale:
 	                   |
 	                   v 
 	        "pressure":0000*/
-	        int index = (value.indexOf("pressure") +10);
+	        int index = (value.indexOf("dt_txt") +9);
 
 	        /*Indice del carattere finale:
 	                      |
 	                      v 
 	        "pressure":0000*/
-	        int index_end = (value.indexOf("sea_level") -2);
+	        int index_end = (value.indexOf("weather") -12);
+
+	        String pressure = new String();
+	       // while(pressure.equals(null)) {
+	        //Leggo da indice iniziale ad indice finale
+	        pressure = value.substring(index, index_end);
+	        System.out.println(pressure);
+            //Date d=null;
+	       // DateFormat formatodata=DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.ITALIAN);
+	        //d=formatodata.parse(pressure);
+	        SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+	      Date d=formato.parse(pressure);
+	        System.out.println("output "+formato.format(d));
+	      
+	         
+	        //Cast del campo main a String
+	        //String value = main_press.toString();
+          // do {
+	        
+	        
+            
+	        /*Indice del carattere iniziale:
+	                   |
+	                   v 
+	        "pressure":0000*/
+	       // int index = (value.indexOf("pressure") +10);
+
+	        /*Indice del carattere finale:
+	                      |
+	                      v 
+	        "pressure":0000*/
+	        /*int index_end = (value.indexOf("sea_level") -2);
 
 	        String pressure = new String();
 	       // while(pressure.equals(null)) {
@@ -65,7 +102,7 @@ public class salvataggiopressionesett {
 	        FileWriter fd = new FileWriter("pressuresett.txt");
 	        fd.write("Pressione: " + pressure);
 	        //chiudo file
-	        fd.close();//
+	        fd.close();*/
 	        
 	        
 
@@ -83,6 +120,7 @@ public class salvataggiopressionesett {
 	        je.printStackTrace();
 	        System.exit(100);
 	    }
+
 	}
 
 }
